@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import jdk.nashorn.internal.ir.CaseNode;
+
 public class consoleMenu {
 
 	private Scanner scanner;
@@ -96,6 +98,7 @@ public class consoleMenu {
 		ds3class.setBasicStats();
 		ds3class.storeTheBaseStats();
 		ds3class.setNameOfStats();
+		ds3class.newLevelCreate();
 		do {
 			System.out.print("\n" + message);
 			do {
@@ -168,15 +171,91 @@ public class consoleMenu {
 	}
 
 	public void changeSpecificStat(ds3ClassOptimizer ds3class) {
-		
-		System.out.println("    Select Stat   ");
-		System.out.format("%-15s %-1s%n","Stat" , "Value");
-		for (int j = 1; j < ds3ClassOptimizer.NUMBER_OF_STATS; j++) {
-			System.out.format("%-15s %-1s%n", ds3class.getSpecificNameOfSkills(j),
-			ds3class.getSpecificUserChoice(j));
-		}
-		
-	
+		int choice, vgr, att, end, vit, stg, dex, inte, fth, lck;
+		boolean check, flag ;
+		flag = true;
+		do {
+			do {
+				System.out.println("    Select Stat   ");
+				System.out.format("%-15s %-1s%n", "Stat", "Value");
+				for (int j = 1; j < ds3ClassOptimizer.NUMBER_OF_STATS; j++) {
+					System.out.format("%-15s %-1s%n", j + "." + ds3class.getSpecificNameOfSkills(j),
+							ds3class.getSpecificUserChoice(j));
+				}
+				System.out.println("10.Back");
+				choice = checkIfInt(""); // check if input has int
+				check = checIfRightValue(choice, 1, 10, "");// check input right values
+			} while (check);
+			switch (choice) {
+			case 1:
+				System.out.print("1Enter Vigor(0 = Dont care) : ");
+				vgr = checkIfInt("Enter Vigor(0 = Dont care) : ");// check if input has int
+				ds3class.newVigor(vgr);
+				ds3class.newVigor(vgr);
+				ds3class.newLevelSohrt();
+				printClassByLvl(ds3class);
+				break;
+			case 2:
+				System.out.print("Enter Attunement(0 = Dont care) : ");
+				att = checkIfInt("Enter Attunement(0 = Dont care) : ");// check if input has int
+				ds3class.newAttunemen(att);
+				ds3class.newLevelSohrt();
+				printClassByLvl(ds3class);
+				break;
+			case 3:
+				System.out.print("Enter Endurance (0 = Dont care) : ");
+				end = checkIfInt("Enter Endurance (0 = Dont care) : ");// check if input has int
+				ds3class.newEndurance(end);
+				ds3class.newLevelSohrt();
+				printClassByLvl(ds3class);
+				break;
+			case 4:
+				System.out.print("Enter Vitality (0 = Dont care) : ");
+				vit = checkIfInt("Enter Vitality (0 = Dont care) : ");// check if input has int
+				ds3class.newVitality(vit);
+				ds3class.newLevelSohrt();
+				printClassByLvl(ds3class);
+				break;
+			case 5:
+				System.out.print("Enter Strenth (0 = Dont care) : ");
+				stg = checkIfInt("Enter Strenth (0 = Dont care) : ");// check if input has int
+				ds3class.newStrentgh(stg);
+				ds3class.newLevelSohrt();
+				printClassByLvl(ds3class);
+				break;
+			case 6:
+				System.out.print("Enter Dexterity (0 = Dont care) : ");
+				dex = checkIfInt("Enter Dexterity (0 = Dont care) : ");// check if input has int
+				ds3class.newDexterity(dex);
+				ds3class.newLevelSohrt();
+				printClassByLvl(ds3class);
+				break;
+			case 7:
+				System.out.print("Enter Intelligence (0 = Dont care) : ");
+				inte = checkIfInt("Enter Intelligence (0 = Dont care) : ");// check if input has int
+				ds3class.newIntelligence(inte);
+				ds3class.newLevelSohrt();
+				printClassByLvl(ds3class);
+				break;
+			case 8:
+				System.out.print("Enter Faith (0 = Dont care) : ");
+				fth = checkIfInt("Enter Faith (0 = Dont care) : ");// check if input has int
+				ds3class.newFaith(fth);
+				ds3class.newLevelSohrt();
+				printClassByLvl(ds3class);
+				break;
+			case 9:
+				System.out.print("Enter Luck (0 = Dont care) : ");
+				lck = checkIfInt("Enter Luck (0 = Dont care) : ");// check if input has int
+				ds3class.newLuck(lck);
+				ds3class.newLevelSohrt();
+				printClassByLvl(ds3class);
+				break;
+			case 10:
+				flag = false;
+				break;
+			}
+		} while (flag);
 	}
 	
 	// print Stats
