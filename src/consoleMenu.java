@@ -89,8 +89,10 @@ public class consoleMenu {
 		String message;
 		int choice;
 		boolean check, flag;
-		message = "                Select an option\n" + "1.Select your stats             5.Show classes Soul Level\n"
-				+ "2.Change one stat               6.Reset Stats\n" + "3.Select class and show stats   7.Back\n"
+		message = "                Select an option\n" 
+				+ "1.Select your stats             5.Show classes Soul Level\n"
+				+ "2.Change one stat               6.Reset Stats\n" 
+				+ "3.Select class and show stats   7.Back\n"
 				+ "4.Show your prefered stats      8.Main Menu\n";
 		flag = true;
 		ds3ClassOptimizer ds3class;
@@ -114,7 +116,8 @@ public class consoleMenu {
 				changeSpecificStat(ds3class);
 				break;
 			case 3:// Show stats by class
-
+				
+				break;
 			case 4:// Show your prefered stats
 
 			case 5:// Show classes Soul Level
@@ -168,7 +171,7 @@ public class consoleMenu {
 		ds3class.newLevelCreate();
 		ds3class.newLevelSohrt();
 		printClassByLvl(ds3class);
-	}
+	}			
 
 	public void changeSpecificStat(ds3ClassOptimizer ds3class) {
 		int choice, vgr, att, end, vit, stg, dex, inte, fth, lck;
@@ -182,9 +185,10 @@ public class consoleMenu {
 					System.out.format("%-15s %-1s%n", j + "." + ds3class.getSpecificNameOfSkills(j),
 							ds3class.getSpecificUserChoice(j));
 				}
-				System.out.println("10.Back");
+				System.out.println("10.Show best class");
+				System.out.println("11.Back");
 				choice = checkIfInt(""); // check if input has int
-				check = checIfRightValue(choice, 1, 10, "");// check input right values
+				check = checIfRightValue(choice, 1, 11, "");// check input right values
 			} while (check);
 			switch (choice) {
 			case 1:
@@ -252,11 +256,15 @@ public class consoleMenu {
 				printClassByLvl(ds3class);
 				break;
 			case 10:
+				printClassByLvl(ds3class);
+				break;
+			case 11:
 				flag = false;
 				break;
 			}
 		} while (flag);
 	}
+	
 	
 	// print Stats
 	public static void printClassByLvl(ds3ClassOptimizer ds3class) {
