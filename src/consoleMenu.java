@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import jdk.nashorn.internal.ir.CaseNode;
-
 public class consoleMenu {
 
 	private Scanner scanner;
@@ -101,6 +99,7 @@ public class consoleMenu {
 		ds3class.storeTheBaseStats();
 		ds3class.setNameOfStats();
 		ds3class.newLevelCreate();
+		ds3class.newLevelSohrt();
 		do {
 			System.out.print("\n" + message);
 			do {
@@ -116,12 +115,12 @@ public class consoleMenu {
 				changeSpecificStat(ds3class);
 				break;
 			case 3:// Show stats by class
-				
+				selectClassAndShowStats(ds3class);
 				break;
 			case 4:// Show your prefered stats
-
+				break;
 			case 5:// Show classes Soul Level
-
+				break;
 			case 6:// Reset Stats
 				ds3class.setBasicStats();
 				System.out.println("Stats have been reseted");
@@ -168,7 +167,6 @@ public class consoleMenu {
 		System.out.print("Enter Luck (0 = Dont care) : ");
 		lck = checkIfInt("Enter Luck (0 = Dont care) : ");// check if input has int
 		ds3class.newLuck(lck);
-		ds3class.newLevelCreate();
 		ds3class.newLevelSohrt();
 		printClassByLvl(ds3class);
 	}			
@@ -265,6 +263,33 @@ public class consoleMenu {
 		} while (flag);
 	}
 	
+	public void selectClassAndShowStats(ds3ClassOptimizer ds3class) {
+		int choice;
+		boolean check, flag;
+		flag = true;
+		do {
+			do {
+				int j ;
+				System.out.println("    Select Class   ");
+				for (int i = 0; i < ds3ClassOptimizer.NUMBER_OF_CLASSES; i++) {
+					j = ds3class.getSpecificClassPointer(i);
+					System.out.format("%-15s %-1s%n", (i + 1) + "." + ds3class.getspecificAllClasses(j).getName(),
+							ds3class.getspecificAllClasses(j).getSpecificStat(0));
+				}
+				System.out.println("11.Back");
+				choice = checkIfInt(""); // check if input has int
+				check = checIfRightValue(choice, 1, 11, "");// check input right values
+			} while (check);
+			if(choice == 11) {
+				flag = false;
+			}
+			choice--;
+			System.out.println("     " + ds3class.getspecificAllClasses(choice).getName() );
+			for (int i = 0; i < ds3ClassOptimizer.NUMBER_OF_CLASSES; i++) {
+				System.out.format("%-15s %-1s%n",ds3class.getSpecificNameOfSkills(i),ds3class.getspecificAllClasses(choice).getSpecificStat(i));
+			}
+		} while (flag);
+	}
 	
 	// print Stats
 	public static void printClassByLvl(ds3ClassOptimizer ds3class) {

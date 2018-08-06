@@ -124,6 +124,7 @@ public class ds3ClassOptimizer {
 
 	// Name of Stats
 	public void setNameOfStats() {
+		nameOfSkills[0] = "Soul Level";
 		nameOfSkills[1] = "Vigor";
 		nameOfSkills[2] = "Attunement";
 		nameOfSkills[3] = "Endurance ";
